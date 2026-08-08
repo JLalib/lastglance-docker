@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  lastglance:
+    image: ghcr.io/krelltunez/lastglance:latest
+    container_name: lastglance
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    healthcheck:
+      test: ["CMD-SHELL", "nc -z 127.0.0.1 80 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
